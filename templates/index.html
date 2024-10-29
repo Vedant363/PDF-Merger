@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Merger</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, yellow, rgb(1, 252, 1));
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 1rem;
+            margin-top: 150px;
+        }
+
+        h1 {
+            color: #4a90e2;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin: 1rem 0 0.5rem;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.7rem;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: rgb(1, 252, 1) ;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f57402;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #000000;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='pdf merger.png') }}" alt="Sample Image" style="max-width: 100%; height: auto;">
+        <form id="pdfForm" action="/merge" method="post" enctype="multipart/form-data" onsubmit="resetform()">
+            <label for="pdf_files">Upload PDF files:</label>
+            <input type="file" id="pdf_files" name="pdf_files" multiple accept="application/pdf" required>
+            <label for="final_output_text">Name of merged PDF: </label>
+            <input type="text" id="final_output_text" name="final_output_text" min="1" required>
+            <button type="submit">Merge PDFs</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 61,62,68,286 PCCOE
+    </footer>
+
+    <script>
+        function resetform() {
+            setTimeout(function() {
+            document.getElementById("pdf_files").value = "";
+            document.getElementById("final_output_text").value = "";
+            }, 100);
+        }
+    </script>
+</body>
+</html>
